@@ -1,0 +1,89 @@
+
+
+
+        Food_Load Code
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=restaurantdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("Select * from foodtab", con);
+
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            dataGridView1.DataSource = table;
+
+
+
+
+        Add Code
+
+
+       SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=restaurantdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("Insert into foodtab Values(@id,@name,@food,@food1,@price)", con);
+
+            cnn.Parameters.AddWithValue("@id", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@name", (textBox2.Text));
+
+            cnn.Parameters.AddWithValue("@food", (textBox3.Text));
+
+            cnn.Parameters.AddWithValue("@food1", (textBox4.Text));
+
+            cnn.Parameters.AddWithValue("@price", int.Parse(textBox5.Text));
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Data Added");
+
+
+
+         Update Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=restaurantdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("Update foodtab set name=@name,food=@food,food1=@food1,price=@price where id=@id", con);
+
+            cnn.Parameters.AddWithValue("@id", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@name", (textBox2.Text));
+
+            cnn.Parameters.AddWithValue("@food", (textBox3.Text));
+
+            cnn.Parameters.AddWithValue("@food1", (textBox4.Text));
+
+            cnn.Parameters.AddWithValue("@price", int.Parse(textBox5.Text));
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Data Updated");
+
+
+
+
+         Delete Code
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=restaurantdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("Delete foodtab where id=@id", con);
+
+            cnn.Parameters.AddWithValue("@id", int.Parse(textBox1.Text));
+            
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Data Deleted");
+
+
+       
